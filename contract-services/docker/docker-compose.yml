@@ -1,0 +1,41 @@
+version: '3.8'
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: senha_admin
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+    networks:
+      - mongo-net
+
+networks:
+  mongo-net:
+    driver: bridge
+
+#version: '3.8'
+#
+#services:
+#  mongo:
+#    image: mongo:4.4
+#    container_name: mongo_container
+#    ports:
+#      - "27017:27017"
+#    environment:
+#      MONGO_INITDB_ROOT_USERNAME: admin
+#      MONGO_INITDB_ROOT_PASSWORD: senha_admin
+#    volumes:
+#      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js
+#
+#  mongo_setup:
+#    image: mongo:4.4
+#    depends_on:
+#      - mongo
+#    volumes:
+#      - ./init-mongo.js:/init-mongo.js
+#    entrypoint: ["/bin/sh", "-c", "until mongo mongo_container:27017/admin --eval 'db.runCommand({ ping: 1 })'; do echo 'Waiting for MongoDB...'; sleep 5; done; mongo mongo_container:27017/admin /init-mongo.js"]
