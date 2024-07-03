@@ -1,6 +1,6 @@
-package com.academy.fourtk.person_services
+package com.academy.fourtk.person_services.application.web.controllers
 
-import com.academy.fourtk.person_services.dto.PersonResponseV1
+import com.academy.fourtk.person_services.application.web.controllers.dto.PersonResponseV1
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping

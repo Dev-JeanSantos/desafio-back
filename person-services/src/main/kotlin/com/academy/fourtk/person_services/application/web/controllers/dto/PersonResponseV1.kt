@@ -1,15 +1,15 @@
-package com.academy.fourtk.contract_services.resources.gateways.products.dto
+package com.academy.fourtk.person_services.application.web.controllers.dto
 
 import java.time.LocalDate
 import java.time.LocalDateTime
 
-data class ProductResponseData(
+data class PersonResponseV1(
     val personId: String,
     val firstName: String,
     val lastName: String,
     val gender: String,
     val cpf: String,
+    val birthdayAt: LocalDate,
     val createdAt: LocalDateTime,
-    val updatedAt: LocalDateTime? = null,
-    val birthdayAt: LocalDate? = null
+    val updateAt: LocalDateTime,
 )

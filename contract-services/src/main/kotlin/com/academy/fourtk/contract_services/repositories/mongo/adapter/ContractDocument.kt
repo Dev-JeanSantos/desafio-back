@@ -9,13 +9,17 @@ import java.time.LocalDateTime
 @Document(collection = "contract")
 data class ContractDocument (
     @BsonId
-    val _id: String?,
+    val _id: String,
     val personId: String,
-    val fullName: String? = null,
-    val gender: String? = null,
-    val cpf: String? = null,
-    val birthdayAt: LocalDate? = null,
+    val fullNamePerson: String? = null,
+    val genderPerson: String? = null,
+    val cpfPerson: String? = null,
+    val birthdayAtPerson: LocalDate? = null,
     val productId: String,
+    val nameProduct: String? = null,
+    val descriptionProduct: String? = null,
+    val quantityProduct: Int? = null,
+    val originProduct: String? = null,
     val status: ContractStatusEnum,
     val integrationServiceAPendent: Boolean,
     val integrationServiceBPendent: Boolean,
