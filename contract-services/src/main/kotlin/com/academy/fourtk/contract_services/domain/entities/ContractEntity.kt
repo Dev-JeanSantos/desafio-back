@@ -1,4 +1,4 @@
-package com.academy.fourtk.contract_services.domain
+package com.academy.fourtk.contract_services.domain.entities
 
 import com.academy.fourtk.contract_services.domain.enums.ContractStatusEnum
 import java.time.LocalDateTime

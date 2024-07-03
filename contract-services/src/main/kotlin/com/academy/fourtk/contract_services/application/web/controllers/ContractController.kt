@@ -1,9 +1,9 @@
-package com.academy.fourtk.contract_services.controles
+package com.academy.fourtk.contract_services.application.web.controllers
 
-import com.academy.fourtk.contract_services.builders.BuildContracts.buildContractEntity
-import com.academy.fourtk.contract_services.builders.BuildContracts.buildResponse
-import com.academy.fourtk.contract_services.dtos.requesties.ContractRequestV1
-import com.academy.fourtk.contract_services.dtos.responses.ContractResponseV1
+import com.academy.fourtk.contract_services.application.web.controllers.builders.BuildContracts.buildContractEntity
+import com.academy.fourtk.contract_services.application.web.controllers.builders.BuildContracts.buildResponse
+import com.academy.fourtk.contract_services.application.web.controllers.dtos.requesties.ContractRequestV1
+import com.academy.fourtk.contract_services.application.web.controllers.dtos.responses.ContractResponseV1
 import com.academy.fourtk.contract_services.services.ServiceContract
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody

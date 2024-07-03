@@ -5,4 +5,6 @@ import org.springframework.data.mongodb.repository.MongoRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface ContractRepository: MongoRepository<ContractDocument, String>
+interface ContractRepository: MongoRepository<ContractDocument, String> {
+    fun findByPersonId(personId: String): ContractDocument
+}

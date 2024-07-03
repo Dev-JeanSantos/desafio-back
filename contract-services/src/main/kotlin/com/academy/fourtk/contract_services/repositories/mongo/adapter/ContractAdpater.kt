@@ -1,6 +1,6 @@
 package com.academy.fourtk.contract_services.repositories.mongo.adapter
 
-import com.academy.fourtk.contract_services.domain.ContractEntity
+import com.academy.fourtk.contract_services.domain.entities.ContractEntity
 import java.util.UUID.randomUUID
 
 fun entityToDocument(

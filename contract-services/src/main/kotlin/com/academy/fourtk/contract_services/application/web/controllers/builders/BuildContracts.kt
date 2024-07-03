@@ -1,9 +1,9 @@
-package com.academy.fourtk.contract_services.builders
+package com.academy.fourtk.contract_services.application.web.controllers.builders
 
-import com.academy.fourtk.contract_services.domain.ContractEntity
+import com.academy.fourtk.contract_services.domain.entities.ContractEntity
 import com.academy.fourtk.contract_services.domain.enums.ContractStatusEnum
-import com.academy.fourtk.contract_services.dtos.requesties.ContractRequestV1
-import com.academy.fourtk.contract_services.dtos.responses.ContractResponseV1
+import com.academy.fourtk.contract_services.application.web.controllers.dtos.requesties.ContractRequestV1
+import com.academy.fourtk.contract_services.application.web.controllers.dtos.responses.ContractResponseV1
 import java.time.LocalDateTime
 
 object BuildContracts {
