@@ -1,9 +1,9 @@
 package com.academy.fourtk.contract_services.repositories.mongo.adapter
 
 import com.academy.fourtk.contract_services.domain.enums.ContractStatusEnum
+import com.fasterxml.jackson.annotation.JsonFormat
 import org.bson.codecs.pojo.annotations.BsonId
 import org.springframework.data.mongodb.core.mapping.Document
-import java.time.LocalDate
 import java.time.LocalDateTime
 
 @Document(collection = "contract")
@@ -14,7 +14,7 @@ data class ContractDocument (
     val fullNamePerson: String? = null,
     val genderPerson: String? = null,
     val cpfPerson: String? = null,
-    val birthdayAtPerson: LocalDate? = null,
+    val birthdayAtPerson: String? = null,
     val productId: String,
     val nameProduct: String? = null,
     val descriptionProduct: String? = null,
@@ -23,6 +23,7 @@ data class ContractDocument (
     val status: ContractStatusEnum,
     val integrationServiceAPendent: Boolean,
     val integrationServiceBPendent: Boolean,
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
     val createdAt: LocalDateTime,
     val updatedAt: LocalDateTime? = null,
     val canceledAt: LocalDateTime? = null,

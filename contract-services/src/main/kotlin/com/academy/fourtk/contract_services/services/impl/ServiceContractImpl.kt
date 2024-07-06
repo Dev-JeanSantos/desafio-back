@@ -13,6 +13,7 @@ import com.academy.fourtk.contract_services.services.ProductService
 import com.academy.fourtk.contract_services.services.ServiceContract
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.time.LocalDateTime
 
 @Service
 @Transactional
@@ -41,7 +42,8 @@ class ServiceContractImpl(
             fullNamePerson = person.firstName + " " + person.lastName,
             genderPerson = person.gender,
             cpfPerson = person.cpf,
-            birthdayAtPerson = person.birthdayAt
+            birthdayAtPerson = person.birthdayAt,
+            updatedAt = LocalDateTime.now()
         )
 
         val contractsaved = repository.save(personSaved)
@@ -55,15 +57,17 @@ class ServiceContractImpl(
             nameProduct = product.name,
             descriptionProduct = product.description,
             quantityProduct = product.quantity,
-            originProduct = product.origin
+            originProduct = product.origin,
+            updatedAt = LocalDateTime.now()
         )
 
         val contractFinalized = builder(repository.save(productUpdated))
         val message =  mapper.writeValueAsString(contractFinalized)
         sqsProducerService.sendMessage("contract-service-sqs", message)
+
         return ContractResponseV1(
-            numberContract = "123456",
-            message = "Sucesso"
+            numberContract = contractFinalized.contractId,
+            message = "Contrato Criado com Sucesso"
         )
     }
 }
