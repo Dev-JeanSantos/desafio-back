@@ -47,6 +47,9 @@ dependencies {
 	implementation ("io.awspring.cloud:spring-cloud-aws-messaging")
 	implementation("com.amazonaws:aws-java-sdk-sqs")
 
+	//LOGGABLE
+	implementation("io.github.microutils:kotlin-logging:3.0.5")
+	implementation("ch.qos.logback:logback-classic:1.4.5")
 
 	//Tests
 	testImplementation("io.github.openfeign:feign-micrometer:13.3")

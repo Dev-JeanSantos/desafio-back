@@ -1,5 +1,6 @@
 package com.academy.fourtk.contract_services.resources.services.impl
 
+import com.academy.fourtk.contract_services.domain.commons.PersonServiceIntegrationException
 import com.academy.fourtk.contract_services.resources.gateways.person.PersonGateway
 import com.academy.fourtk.contract_services.resources.gateways.person.dto.PersonResponseData
 import com.academy.fourtk.contract_services.services.PersonService
@@ -10,6 +11,10 @@ class PersonServiceImpl(
     private val personGateway: PersonGateway
 ): PersonService {
     override fun getPersonById(personId: String): PersonResponseData {
-       return personGateway.getPersonById(personId)
+        return runCatching {
+            personGateway.getPersonById(personId)
+        }.onFailure {
+            throw PersonServiceIntegrationException("Integration Failure with PersonService")
+        }.getOrThrow()
     }
 }
