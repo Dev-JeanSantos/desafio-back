@@ -10,32 +10,33 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - ./scripts/mongo/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
     networks:
-      - mongo-net
+      - docker-net
+
+  localstack:
+    image: localstack/localstack:latest
+    container_name: localstack
+    ports:
+      - "4566-4586:4566-4586"
+      - "8055:8080"
+    environment:
+      - EXTRA_CORS_ALLOWED_ORIGINS=app://.
+      - SERVICES=sqs,sns             # Especifique os serviços da AWS que deseja simular
+      - DEFAULT_REGION=us-east-2     # Região padrão da AWS para simulação
+      - AWS_ACCESS_KEY_ID=test       # Credenciais de acesso simuladas
+      - AWS_SECRET_ACCESS_KEY=test   # Chave secreta simulada
+      - DEBUG=1
+      - no_proxy=localhost,0.0.0.0
+      - HOSTNAME_EXTERNAL=localstack
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./scripts/localstack:/docker-entrypoint-initaws.d"
+      - "./scripts/localstack/files:/files"
+    networks:
+      - docker-net
 
 networks:
-  mongo-net:
+  docker-net:
     driver: bridge
-
-#version: '3.8'
-#
-#services:
-#  mongo:
-#    image: mongo:4.4
-#    container_name: mongo_container
-#    ports:
-#      - "27017:27017"
-#    environment:
-#      MONGO_INITDB_ROOT_USERNAME: admin
-#      MONGO_INITDB_ROOT_PASSWORD: senha_admin
-#    volumes:
-#      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js
-#
-#  mongo_setup:
-#    image: mongo:4.4
-#    depends_on:
-#      - mongo
-#    volumes:
-#      - ./init-mongo.js:/init-mongo.js
-#    entrypoint: ["/bin/sh", "-c", "until mongo mongo_container:27017/admin --eval 'db.runCommand({ ping: 1 })'; do echo 'Waiting for MongoDB...'; sleep 5; done; mongo mongo_container:27017/admin /init-mongo.js"]
