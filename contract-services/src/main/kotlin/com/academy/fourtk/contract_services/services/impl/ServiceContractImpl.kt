@@ -16,6 +16,7 @@ import com.academy.fourtk.contract_services.services.PersonService
 import com.academy.fourtk.contract_services.services.ProductService
 import com.academy.fourtk.contract_services.services.ServiceContract
 import com.mongodb.MongoTimeoutException
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDateTime
@@ -26,7 +27,9 @@ class ServiceContractImpl(
     private val repository: ContractRepository,
     private val personService: PersonService,
     private val productService: ProductService,
-    private val sqsProducerService: SqsProducerService
+    private val sqsProducerService: SqsProducerService,
+    @Value("\${cloud.aws.endpoint.queue}")
+    private val queue: String
 ) : ServiceContract {
     override fun create(entity: ContractEntity): ContractResponseV1 {
         try {
@@ -42,7 +45,7 @@ class ServiceContractImpl(
                 val contractFinalized = builder(repository.save(contractDocumentByProduct(contractSaved, product)))
 
                 val message = mapper.writeValueAsString(contractFinalized)
-                sqsProducerService.sendMessage("contract-service-sqs", message)
+                sqsProducerService.sendMessage(queue, message)
 
                 return ContractResponseV1(
                     numberContract = contractFinalized.contractId,
