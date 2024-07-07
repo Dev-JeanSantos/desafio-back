@@ -16,6 +16,7 @@ import com.academy.fourtk.contract_services.services.PersonService
 import com.academy.fourtk.contract_services.services.ProductService
 import com.academy.fourtk.contract_services.services.ServiceContract
 import com.mongodb.MongoTimeoutException
+import mu.KotlinLogging
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -31,21 +32,58 @@ class ServiceContractImpl(
     @Value("\${cloud.aws.endpoint.queue}")
     private val queue: String
 ) : ServiceContract {
+
+    private val logger = KotlinLogging.logger {}
     override fun create(entity: ContractEntity): ContractResponseV1 {
         try {
+            logger.info {
+                "[CREATE-CONTRACT]-[Service] Starting the contracted process by " +
+                        "PersonId:[${entity.personId}] ProductId:[${entity.productId}]"
+            }
             val contractSaved = repository.save(entityToDocument(entity))
+            logger.info {
+                "[CREATE-CONTRACT]-[Mongo] Contract saved in the database success " +
+                        "by Id:[${contractSaved._id}] e Status:[${contractSaved.status}]"
+            }
             val person = personService.getPersonById(entity.personId)
+            logger.info {
+                "[CREATE-CONTRACT]-[Gateway] successfully completed integration with service-person," +
+                        "data:[${person}]"
+            }
             try {
                 val contract = repository.findByContractId(contractSaved._id)
 
-                val contractSaved = repository.save(contractDocumentByPerson(contract, person))
+                val contractPerson = repository.save(contractDocumentByPerson(contract, person))
+                logger.info {
+                    "[CREATE-CONTRACT]-[Mongo] Contract and Person saved in the database success " +
+                            "by Id:[${contractPerson._id}] and " +
+                            "there is an integration issue with the product service person:[${contractSaved.integrationServiceAPendent}]"
+                }
 
+                logger.info {
+                    "[CREATE-CONTRACT]-[Gateway] successfully completed integration with service-product" +
+                            "data:[${person}]"
+                }
                 val product = productService.getProductById(entity.productId)
-
                 val contractFinalized = builder(repository.save(contractDocumentByProduct(contractSaved, product)))
+
+                logger.info {
+                    "[CREATE-CONTRACT]-[Mongo] Contract and Product saved in the database success " +
+                            "by Id:[${contractSaved._id}] and " +
+                            "there is an integration issue with the product service:[${contractFinalized.integrationServiceBPendent}]"
+                }
+
+                logger.info {
+                    "[CREATE-CONTRACT]-[Mongo]Contract saved completely successfully" +
+                            "by Id:[${contractSaved._id}] and " +
+                            "Status:[${contractSaved.status}]"
+                }
 
                 val message = mapper.writeValueAsString(contractFinalized)
                 sqsProducerService.sendMessage(queue, message)
+                logger.info {
+                    "[CREATE-CONTRACT]-[SQS]Contract sent to SQS successfully by message:[${message}]"
+                }
 
                 return ContractResponseV1(
                     numberContract = contractFinalized.contractId,
