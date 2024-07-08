@@ -28,6 +28,7 @@ class PersonController {
             updateAt = LocalDateTime.now()
         )
         return runCatching {
+            println("Executou person-services")
             person
         }.onFailure {
             "FALHA"

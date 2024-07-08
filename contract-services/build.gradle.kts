@@ -51,6 +51,11 @@ dependencies {
 	implementation("io.github.microutils:kotlin-logging:3.0.5")
 	implementation("ch.qos.logback:logback-classic:1.4.5")
 
+	//RETRY
+	implementation("org.springframework.boot:spring-boot-starter-webflux")
+	implementation("org.springframework.retry:spring-retry")
+	implementation ("org.aspectj:aspectjweaver:1.9.6")
+
 	//Tests
 	testImplementation("io.github.openfeign:feign-micrometer:13.3")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")

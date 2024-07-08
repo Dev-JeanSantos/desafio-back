@@ -25,6 +25,7 @@ class ProductController {
             updateAt = LocalDateTime.now()
         )
         return runCatching {
+            println("Executou product-services")
             product
         }.onFailure {
             "FALHA"

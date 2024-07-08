@@ -13,6 +13,7 @@ interface PersonGateway {
     @GetMapping(
         value = ["person/{id}"]
     )
+
     fun getPersonById(
         @PathVariable("id") personId: String,
     ): PersonResponseData

@@ -65,7 +65,7 @@ class ServiceContractImpl(
                             "data:[${person}]"
                 }
                 val product = productService.getProductById(entity.productId)
-                val contractFinalized = builder(repository.save(contractDocumentByProduct(contractSaved, product)))
+                val contractFinalized = builder(repository.save(contractDocumentByProduct(contractPerson, product)))
 
                 logger.info {
                     "[CREATE-CONTRACT]-[Mongo] Contract and Product saved in the database success " +

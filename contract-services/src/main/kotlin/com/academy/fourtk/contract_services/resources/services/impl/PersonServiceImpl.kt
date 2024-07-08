@@ -6,6 +6,8 @@ import com.academy.fourtk.contract_services.resources.gateways.person.PersonGate
 import com.academy.fourtk.contract_services.resources.gateways.person.dto.PersonResponseData
 import com.academy.fourtk.contract_services.services.PersonService
 import mu.KotlinLogging
+import org.springframework.retry.annotation.Backoff
+import org.springframework.retry.annotation.Retryable
 import org.springframework.stereotype.Service
 
 @Service
@@ -14,11 +16,14 @@ class PersonServiceImpl(
 ): PersonService {
 
     private val logger = KotlinLogging.logger {}
+
+    @Retryable(maxAttempts = 3, backoff = Backoff(delay = 3000))
     override fun getPersonById(personId: String): PersonResponseData {
         return runCatching {
             logger.info {
                 "[CREATE-CONTRACT]-[Gateway] starting integration with service-person PersonId:[${personId}]"
             }
+            println("Executou Gateway Person")
             personGateway.getPersonById(personId)
         }.onFailure {
             logger.error {

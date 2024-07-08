@@ -6,6 +6,8 @@ import com.academy.fourtk.contract_services.resources.gateways.product.ProductGa
 import com.academy.fourtk.contract_services.resources.gateways.product.dto.ProductResponseData
 import com.academy.fourtk.contract_services.services.ProductService
 import mu.KotlinLogging
+import org.springframework.retry.annotation.Backoff
+import org.springframework.retry.annotation.Retryable
 import org.springframework.stereotype.Service
 
 @Service
@@ -14,6 +16,7 @@ class ProductServiceImpl(
 ) : ProductService {
 
     private val logger = KotlinLogging.logger {}
+    @Retryable(maxAttempts = 3, backoff = Backoff(delay = 3000))
     override fun getProductById(productId: String): ProductResponseData {
         return runCatching {
             logger.info {
