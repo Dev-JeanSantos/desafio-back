@@ -43,6 +43,7 @@ dependencies {
 	implementation("org.springframework.cloud:spring-cloud-starter-openfeign:4.1.2")
 	implementation("io.github.openfeign:feign-httpclient:13.3")
 
+
 	//SQS
 	implementation ("io.awspring.cloud:spring-cloud-aws-messaging")
 	implementation("com.amazonaws:aws-java-sdk-sqs")
