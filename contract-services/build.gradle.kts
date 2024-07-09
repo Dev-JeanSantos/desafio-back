@@ -35,6 +35,9 @@ dependencies {
 
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 
+	//SECURITY
+	implementation("org.springframework.boot:spring-boot-starter-security")
+
 	//MONGO
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
 	implementation("org.mongodb:mongodb-driver-sync")
@@ -57,11 +60,16 @@ dependencies {
 	implementation("org.springframework.retry:spring-retry")
 	implementation ("org.aspectj:aspectjweaver:1.9.6")
 
+
+	implementation ("de.huxhorn.sulky:de.huxhorn.sulky.ulid:8.2.0")
+
 	//Tests
 	testImplementation("io.github.openfeign:feign-micrometer:13.3")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+
 
 
 }
