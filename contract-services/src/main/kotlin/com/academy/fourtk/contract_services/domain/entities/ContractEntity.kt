@@ -8,8 +8,8 @@ data class ContractEntity(
     val personId: String,
     val productId: String,
     val status: ContractStatusEnum,
-    val integrationServiceAPendent: Boolean,
-    val integrationServiceBPendent: Boolean,
+    val integrationPersonServicePendent: Boolean,
+    val integrationProductServicePendent: Boolean,
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
     val createdAt: LocalDateTime,
     val updatedAt: LocalDateTime? = null,

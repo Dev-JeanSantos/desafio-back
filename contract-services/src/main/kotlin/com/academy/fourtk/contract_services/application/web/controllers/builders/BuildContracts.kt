@@ -12,8 +12,8 @@ object BuildContracts {
             productId = contractRequestV1.productId,
             personId = contractRequestV1.personId,
             status = ContractStatusEnum.PENDING,
-            integrationServiceAPendent = true,
-            integrationServiceBPendent = true,
+            integrationPersonServicePendent = true,
+            integrationProductServicePendent = true,
             createdAt = LocalDateTime.now(),
         )
 

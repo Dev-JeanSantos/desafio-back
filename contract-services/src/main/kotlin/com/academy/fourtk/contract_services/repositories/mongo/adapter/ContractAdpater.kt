@@ -10,8 +10,8 @@ fun entityToDocument(
     personId = entity.personId,
     productId = entity.productId,
     status = entity.status,
-    integrationServiceAPendent = entity.integrationServiceAPendent,
-    integrationServiceBPendent = entity.integrationServiceBPendent,
+    integrationPersonServicePendent = entity.integrationPersonServicePendent,
+    integrationProductServicePendent = entity.integrationProductServicePendent,
     createdAt = entity.createdAt,
     updatedAt = entity.updatedAt,
     canceledAt = entity.updatedAt

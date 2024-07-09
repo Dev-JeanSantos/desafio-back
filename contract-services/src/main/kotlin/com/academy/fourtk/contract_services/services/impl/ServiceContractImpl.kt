@@ -57,7 +57,7 @@ class ServiceContractImpl(
                 logger.info {
                     "[CREATE-CONTRACT]-[Mongo] Contract and Person saved in the database success " +
                             "by Id:[${contractPerson._id}] and " +
-                            "there is an integration issue with the product service person:[${contractSaved.integrationServiceAPendent}]"
+                            "there is an integration issue with the product service person:[${contractSaved.integrationPersonServicePendent}]"
                 }
 
                 logger.info {
@@ -103,7 +103,7 @@ class ServiceContractImpl(
         contractSaved: ContractDocument,
         product: ProductResponseData
     ) = contractSaved.copy(
-        integrationServiceBPendent = false,
+        integrationProductServicePendent = false,
         nameProduct = product.name,
         descriptionProduct = product.description,
         quantityProduct = product.quantity,
@@ -116,7 +116,7 @@ class ServiceContractImpl(
         person: PersonResponseData
     ): ContractDocument {
         val personSaved = contract.copy(
-            integrationServiceAPendent = false,
+            integrationPersonServicePendent = false,
             status = ContractStatusEnum.ACTIVE,
             fullNamePerson = person.firstName + " " + person.lastName,
             genderPerson = person.gender,
