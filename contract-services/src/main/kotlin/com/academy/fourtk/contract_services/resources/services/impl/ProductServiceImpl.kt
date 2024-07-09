@@ -27,7 +27,7 @@ class ProductServiceImpl(
             logger.error {
                 "[CREATE-CONTRACT]-[Gateway] Integration Failure with ProductService"
             }
-            throw ContractServiceIntegrationException("Integration Failure with ContractService")
+            throw ContractServiceIntegrationException("Integration Failure with ProductService")
         }.onFailure {
             logger.error {
                 "[CREATE-CONTRACT]-[Gateway] No product exists with this productId: $productId."
