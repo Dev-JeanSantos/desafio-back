@@ -60,7 +60,10 @@ dependencies {
 	implementation("org.springframework.retry:spring-retry")
 	implementation ("org.aspectj:aspectjweaver:1.9.6")
 
+	//Open API
+	implementation ("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
 
+	//Test de Controller
 	implementation ("de.huxhorn.sulky:de.huxhorn.sulky.ulid:8.2.0")
 
 	//Tests
