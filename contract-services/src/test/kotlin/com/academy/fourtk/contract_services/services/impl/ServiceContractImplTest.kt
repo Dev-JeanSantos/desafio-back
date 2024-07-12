@@ -1,6 +1,7 @@
 package com.academy.fourtk.contract_services.services.impl
 
 import com.academy.fourtk.contract_services.application.web.config.parser.toObject
+import com.academy.fourtk.contract_services.domain.commons.NotFoundException
 import com.academy.fourtk.contract_services.domain.entities.ContractEntity
 import com.academy.fourtk.contract_services.infrastructure.messaging.producer.SqsProducerService
 import com.academy.fourtk.contract_services.repositories.mongo.adapter.ContractDocument
@@ -9,11 +10,13 @@ import com.academy.fourtk.contract_services.resources.gateways.person.dto.Person
 import com.academy.fourtk.contract_services.resources.gateways.product.dto.ProductResponseData
 import com.academy.fourtk.contract_services.services.PersonService
 import com.academy.fourtk.contract_services.services.ProductService
+import com.mongodb.MongoTimeoutException
 import io.mockk.every
 import io.mockk.impl.annotations.RelaxedMockK
 import io.mockk.verify
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.test.context.junit.jupiter.SpringExtension
 import kotlin.test.assertEquals
@@ -48,7 +51,7 @@ class ServiceContractImplTest {
     }
 
     @Test
-    fun `DeveraCriarUmContratoAoPassarUmaRequestValidaERetornarUmCodigoComStatus201PersistindoContratoNaBaseDeDados`() {
+    fun DeveraCriarUmContratoAoPassarUmaRequestValidaERetornarUmCodigoComStatus201PersistindoContratoNaBaseDeDados() {
 
         every { repository.save(any()) } returns savedContractDocument()
         every { personService.getPersonById(any()) } returns getPerson()
@@ -66,6 +69,32 @@ class ServiceContractImplTest {
         verify(exactly = 1) { personService.getPersonById(any()) }
         verify(exactly = 1) { productService.getProductById(any()) }
         verify(exactly = 1) { sqsService.sendMessage(any(), any()) }
+    }
+
+    @Test
+    fun DeveraRetornarAExcecaoMongoTimeoutExceptionAoPassarUmaRequestValidaEOcorrerIndisponibilidadeNaBaseDeDados() {
+
+        every { repository.save(any()) } returns  savedContractDocument()
+        every { repository.findByContractId(any()) } throws NotFoundException("Contrato nâo encontrado no banco")
+        every { personService.getPersonById(any()) } returns getPerson()
+        every { productService.getProductById(any()) } returns getProduct()
+        every { sqsService.sendMessage(any(), any()) } returns Unit
+
+        assertThrows<NotFoundException> {
+            service.create(createContract())
+        }
+    }
+    @Test
+    fun DeveraRetornarAExcecaoNotFoundExceptionQuandoNaoexisteUmContratoNaoConsultaAoBancoDeDados() {
+
+        every { repository.save(any()) } throws MongoTimeoutException("Falha no mongo")
+        every { personService.getPersonById(any()) } returns getPerson()
+        every { productService.getProductById(any()) } returns getProduct()
+        every { sqsService.sendMessage(any(), any()) } returns Unit
+
+        assertThrows<MongoTimeoutException> {
+            service.create(createContract())
+        }
     }
 
 
