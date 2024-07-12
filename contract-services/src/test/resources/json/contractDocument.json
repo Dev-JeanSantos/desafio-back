@@ -1,0 +1,19 @@
+{
+  "id": "8e444b98-942d-497f-ac97-fe00b8f338a4",
+  "person_id": "456def",
+  "full_name_person": "John Doe",
+  "gender_person": "Male",
+  "cpf_person": "123.456.789-00",
+  "birthday_at_person": "01-01-1980",
+  "product_id": "789ghi",
+  "name_product": "Produto X",
+  "description_product": "Descrição do Produto X",
+  "quantity_product": 10,
+  "origin_product": "Brasil",
+  "status": "ACTIVE",
+  "integration_person_service_pendent": false,
+  "integration_product_service_pendent": false,
+  "created_at": "09-07-2024 15:30:00",
+  "updated_at": null,
+  "canceled_at": null
+}

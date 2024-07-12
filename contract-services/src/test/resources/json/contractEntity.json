@@ -1,0 +1,10 @@
+{
+  "person_id": "123abc",
+  "product_id": "789ghi",
+  "status": "PENDING",
+  "integration_person_service_pendent": false,
+  "integration_product_service_pendent": false,
+  "created_at": "09-07-2024 15:30:00",
+  "update_at": "09-07-2024 16:00:00",
+  "canceled_at": null
+}

@@ -46,7 +46,6 @@ dependencies {
 	implementation("org.springframework.cloud:spring-cloud-starter-openfeign:4.1.2")
 	implementation("io.github.openfeign:feign-httpclient:13.3")
 
-
 	//SQS
 	implementation ("io.awspring.cloud:spring-cloud-aws-messaging")
 	implementation("com.amazonaws:aws-java-sdk-sqs")
@@ -70,10 +69,10 @@ dependencies {
 	testImplementation("io.github.openfeign:feign-micrometer:13.3")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+	testImplementation("io.mockk:mockk:1.13.4")
+	testImplementation("com.ninja-squad:springmockk:4.0.2")
+
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-
-
-
 
 }
 
