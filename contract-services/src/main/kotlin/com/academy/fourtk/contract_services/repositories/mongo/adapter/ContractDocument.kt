@@ -6,7 +6,7 @@ import org.bson.codecs.pojo.annotations.BsonId
 import org.springframework.data.mongodb.core.mapping.Document
 import java.time.LocalDateTime
 
-@Document(collection = "contract")
+@Document(collection = "services_contract")
 data class ContractDocument (
     @BsonId
     val _id: String,
