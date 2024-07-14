@@ -24,8 +24,7 @@ class PersonController {
             gender = "Masculino",
             cpf ="123.456.789-00",
             birthdayAt = LocalDate.of(1990,5 ,15),
-            createdAt = LocalDateTime.now(),
-            updateAt = LocalDateTime.now()
+            createdAt = LocalDateTime.now()
         )
         return runCatching {
             println("Executou person-services")

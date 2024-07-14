@@ -1,4 +1,4 @@
-package com.academy.fourtk.contract_services.resources.gateways.person.dto
+package com.academy.fourtk.contract_services.infrastructure.gateways.person.dto
 
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -13,8 +13,9 @@ data class PersonResponseData(
     val lastName: String,
     val gender: String,
     val cpf: String,
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
+    @JsonProperty("created_at")
     val createdAt: LocalDateTime,
+    @JsonProperty("updatedA_at")
     val updatedAt: LocalDateTime? = null,
     @JsonProperty("birthday_at")
     val birthdayAt: String? = null

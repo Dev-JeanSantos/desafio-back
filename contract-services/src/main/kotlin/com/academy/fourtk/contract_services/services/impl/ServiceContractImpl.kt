@@ -10,8 +10,8 @@ import com.academy.fourtk.contract_services.infrastructure.messaging.producer.Sq
 import com.academy.fourtk.contract_services.repositories.mongo.adapter.ContractDocument
 import com.academy.fourtk.contract_services.repositories.mongo.adapter.entityToDocument
 import com.academy.fourtk.contract_services.repositories.mongo.impl.ContractRepository
-import com.academy.fourtk.contract_services.resources.gateways.person.dto.PersonResponseData
-import com.academy.fourtk.contract_services.resources.gateways.product.dto.ProductResponseData
+import com.academy.fourtk.contract_services.infrastructure.gateways.person.dto.PersonResponseData
+import com.academy.fourtk.contract_services.infrastructure.gateways.product.dto.ProductResponseData
 import com.academy.fourtk.contract_services.services.PersonService
 import com.academy.fourtk.contract_services.services.ProductService
 import com.academy.fourtk.contract_services.services.ServiceContract

@@ -9,7 +9,7 @@ import org.springframework.retry.annotation.EnableRetry
 
 @SpringBootApplication
 @Configuration
-@EnableFeignClients( "com.academy.fourtk.contract_services.resources.gateways.*")
+@EnableFeignClients( "com.academy.fourtk.contract_services.infrastructure.gateways.*")
 @ComponentScan("com.academy.fourtk.*")
 @EnableRetry
 class ContractServicesApplication

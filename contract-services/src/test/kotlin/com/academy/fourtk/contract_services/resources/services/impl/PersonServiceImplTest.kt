@@ -2,8 +2,9 @@ package com.academy.fourtk.contract_services.resources.services.impl
 
 import com.academy.fourtk.contract_services.application.web.config.parser.toObject
 import com.academy.fourtk.contract_services.domain.commons.PersonServiceIntegrationException
-import com.academy.fourtk.contract_services.resources.gateways.person.PersonGateway
-import com.academy.fourtk.contract_services.resources.gateways.person.dto.PersonResponseData
+import com.academy.fourtk.contract_services.infrastructure.gateways.person.PersonGateway
+import com.academy.fourtk.contract_services.infrastructure.gateways.person.dto.PersonResponseData
+import com.academy.fourtk.contract_services.infrastructure.gateways.impl.PersonServiceImpl
 import io.mockk.every
 import io.mockk.impl.annotations.RelaxedMockK
 import io.mockk.verify

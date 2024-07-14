@@ -6,8 +6,8 @@ import com.academy.fourtk.contract_services.domain.entities.ContractEntity
 import com.academy.fourtk.contract_services.infrastructure.messaging.producer.SqsProducerService
 import com.academy.fourtk.contract_services.repositories.mongo.adapter.ContractDocument
 import com.academy.fourtk.contract_services.repositories.mongo.impl.ContractRepository
-import com.academy.fourtk.contract_services.resources.gateways.person.dto.PersonResponseData
-import com.academy.fourtk.contract_services.resources.gateways.product.dto.ProductResponseData
+import com.academy.fourtk.contract_services.infrastructure.gateways.person.dto.PersonResponseData
+import com.academy.fourtk.contract_services.infrastructure.gateways.product.dto.ProductResponseData
 import com.academy.fourtk.contract_services.services.PersonService
 import com.academy.fourtk.contract_services.services.ProductService
 import com.mongodb.MongoTimeoutException
@@ -15,6 +15,7 @@ import io.mockk.every
 import io.mockk.impl.annotations.RelaxedMockK
 import io.mockk.verify
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.extension.ExtendWith

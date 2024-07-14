@@ -1,6 +1,6 @@
-package com.academy.fourtk.contract_services.resources.gateways.person
+package com.academy.fourtk.contract_services.infrastructure.gateways.person
 
-import com.academy.fourtk.contract_services.resources.gateways.person.dto.PersonResponseData
+import com.academy.fourtk.contract_services.infrastructure.gateways.person.dto.PersonResponseData
 import org.springframework.cloud.openfeign.FeignClient
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable

@@ -16,6 +16,5 @@ class SqsProducerService(
     fun sendMessage(queueName: String, message: String) {
         val queueUrl = "$sqsEndpoint/$queueName"
         queueMessagingTemplate.convertAndSend(queueUrl, message)
-
     }
 }

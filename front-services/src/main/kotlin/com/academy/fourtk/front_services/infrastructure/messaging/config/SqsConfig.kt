@@ -12,7 +12,7 @@ class SqsConfig {
     @Bean
     fun amazonSQSAsync(): SqsAsyncClient {
         return SqsAsyncClient.builder()
-            .endpointOverride(URI.create("http://sqs.us-east-2.localhost.localstack.cloud:4566/000000000000"))
+            .endpointOverride(URI.create("http://sqs.us-west-2.localhost.localstack.cloud:4566/000000000000"))
             .region(Region.US_EAST_2)
             .build()
     }

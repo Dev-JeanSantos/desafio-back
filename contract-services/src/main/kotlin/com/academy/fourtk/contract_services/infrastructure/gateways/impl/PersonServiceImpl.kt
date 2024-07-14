@@ -1,9 +1,9 @@
-package com.academy.fourtk.contract_services.resources.services.impl
+package com.academy.fourtk.contract_services.infrastructure.gateways.impl
 
 import com.academy.fourtk.contract_services.domain.commons.NotFoundException
 import com.academy.fourtk.contract_services.domain.commons.PersonServiceIntegrationException
-import com.academy.fourtk.contract_services.resources.gateways.person.PersonGateway
-import com.academy.fourtk.contract_services.resources.gateways.person.dto.PersonResponseData
+import com.academy.fourtk.contract_services.infrastructure.gateways.person.PersonGateway
+import com.academy.fourtk.contract_services.infrastructure.gateways.person.dto.PersonResponseData
 import com.academy.fourtk.contract_services.services.PersonService
 import mu.KotlinLogging
 import org.springframework.retry.annotation.Backoff
