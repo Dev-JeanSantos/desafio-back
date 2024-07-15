@@ -22,6 +22,15 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
+
+	//LOGGABLE
+	implementation("io.github.microutils:kotlin-logging:3.0.5")
+	implementation("ch.qos.logback:logback-classic:1.4.5")
+
+	//MONGO
+	implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
+	implementation("org.mongodb:mongodb-driver-sync")
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
