@@ -7,6 +7,11 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration
 import org.springframework.data.mongodb.core.MongoTemplate
+import org.springframework.data.mongodb.core.SimpleMongoClientDatabaseFactory
+import org.springframework.data.mongodb.core.convert.DefaultDbRefResolver
+import org.springframework.data.mongodb.core.convert.DefaultMongoTypeMapper
+import org.springframework.data.mongodb.core.convert.MappingMongoConverter
+import org.springframework.data.mongodb.core.mapping.MongoMappingContext
 
 @Configuration
 class MongoConfig : AbstractMongoClientConfiguration() {
@@ -36,6 +41,22 @@ class MongoConfig : AbstractMongoClientConfiguration() {
 
     @Bean
     fun mongoTemplate(): MongoTemplate {
-        return MongoTemplate(mongoClient(), databaseName)
+        val databaseFactory = SimpleMongoClientDatabaseFactory(mongoClient(), databaseName)
+        val converter = mappingMongoConverter(databaseFactory, MongoMappingContext())
+        return MongoTemplate(databaseFactory, converter)
+    }
+
+    @Bean
+    fun mappingMongoConverter(
+        databaseFactory: SimpleMongoClientDatabaseFactory,
+        mappingContext: MongoMappingContext
+    ): MappingMongoConverter {
+        val dbRefResolver = DefaultDbRefResolver(databaseFactory)
+        val converter = MappingMongoConverter(dbRefResolver, mappingContext)
+
+        // Remove _class from being saved
+        converter.setTypeMapper(DefaultMongoTypeMapper(null))
+
+        return converter
     }
 }

@@ -14,5 +14,6 @@ mongo services --eval "
 
 # Criar a coleção services_contract
 mongo services --eval "db.createCollection('services_contract');"
+mongo services --eval "db.createCollection('services_product');"
 
-echo "Coleção 'services_contract' criada com sucesso."
+echo "Coleção [services_contract | services_product ] criadas com sucesso."
