@@ -7,12 +7,10 @@ import org.springframework.stereotype.Service
 
 @Service
 class ContractService(
-    @Value("\${cloud.aws.endpoint.queue}")
-    private val queue: String,
-
     private val sqsConfig: SqsConfig
 ) {
-    @SqsListener("contract-service-sqs")
+    @SqsListener("\${cloud.aws.endpoint.sqs}\${cloud.aws.endpoint.queue}")
+
     fun getContractListner(msg: String){
         println("leitura da fila: ${msg}")
     }

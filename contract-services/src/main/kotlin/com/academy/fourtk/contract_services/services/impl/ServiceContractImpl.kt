@@ -74,7 +74,7 @@ class ServiceContractImpl(
                 }
 
                 logger.info {
-                    "[CREATE-CONTRACT]-[Mongo]Contract saved completely successfully" +
+                    "[CREATE-CONTRACT]-[Mongo]Contract saved completely successfully " +
                             "by Id:[${contractSaved._id}] and " +
                             "Status:[${contractSaved.status}]"
                 }
